@@ -1,0 +1,100 @@
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\cef.pak
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\cef_100_percent.pak
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\cef_200_percent.pak
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\cef_extensions.pak
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\chrome_elf.dll
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\d3dcompiler_47.dll
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\devtools_resources.pak
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\icudtl.dat
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\libcef.dll
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\libEGL.dll
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\libGLESv2.dll
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\locales\am.pak
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\locales\ar.pak
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\locales\bg.pak
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\locales\bn.pak
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\locales\ca.pak
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\locales\cs.pak
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\locales\da.pak
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\locales\de.pak
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\locales\el.pak
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\locales\en-GB.pak
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\locales\en-US.pak
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\locales\es-419.pak
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\locales\es.pak
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\locales\et.pak
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\locales\fa.pak
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\locales\fi.pak
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\locales\fil.pak
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\locales\fr.pak
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\locales\gu.pak
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\locales\he.pak
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\locales\hi.pak
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\locales\hr.pak
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\locales\hu.pak
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\locales\id.pak
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\locales\it.pak
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\locales\ja.pak
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\locales\kn.pak
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\locales\ko.pak
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\locales\lt.pak
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\locales\lv.pak
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\locales\ml.pak
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\locales\mr.pak
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\locales\ms.pak
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\locales\nb.pak
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\locales\nl.pak
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\locales\pl.pak
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\locales\pt-BR.pak
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\locales\pt-PT.pak
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\locales\ro.pak
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\locales\ru.pak
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\locales\sk.pak
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\locales\sl.pak
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\locales\sr.pak
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\locales\sv.pak
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\locales\sw.pak
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\locales\ta.pak
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\locales\te.pak
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\locales\th.pak
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\locales\tr.pak
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\locales\uk.pak
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\locales\vi.pak
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\locales\zh-CN.pak
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\locales\zh-TW.pak
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\natives_blob.bin
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\snapshot_blob.bin
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\swiftshader\libEGL.dll
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\swiftshader\libGLESv2.dll
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\v8_context_snapshot.bin
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\widevinecdmadapter.dll
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\CefSharp.BrowserSubprocess.Core.dll
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\CefSharp.BrowserSubprocess.Core.pdb
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\CefSharp.BrowserSubprocess.exe
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\CefSharp.BrowserSubprocess.pdb
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\CefSharp.Core.dll
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\CefSharp.Core.pdb
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\CefSharp.Core.xml
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\CefSharp.dll
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\CefSharp.pdb
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\CefSharp.XML
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\CefSharp.WinForms.dll
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\CefSharp.WinForms.pdb
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\CefSharp.WinForms.XML
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\steemwriter.html
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\Steem Office.exe.config
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\Steem Office.exe.manifest
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\Steem Office.application
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\Steem Office.exe
+C:\Dev\Steem Office\Steem Office\bin\x86\Debug\Steem Office.pdb
+C:\Dev\Steem Office\Steem Office\obj\x86\Debug\Steem_Office.frmEditor.resources
+C:\Dev\Steem Office\Steem Office\obj\x86\Debug\Steem_Office.frmLogin.resources
+C:\Dev\Steem Office\Steem Office\obj\x86\Debug\Steem_Office.frmMain.resources
+C:\Dev\Steem Office\Steem Office\obj\x86\Debug\Steem_Office.Properties.Resources.resources
+C:\Dev\Steem Office\Steem Office\obj\x86\Debug\Steem Office.csproj.GenerateResource.cache
+C:\Dev\Steem Office\Steem Office\obj\x86\Debug\Steem Office.csproj.CoreCompileInputs.cache
+C:\Dev\Steem Office\Steem Office\obj\x86\Debug\Steem Office.TrustInfo.xml
+C:\Dev\Steem Office\Steem Office\obj\x86\Debug\Steem Office.exe.manifest
+C:\Dev\Steem Office\Steem Office\obj\x86\Debug\Steem Office.application
+C:\Dev\Steem Office\Steem Office\obj\x86\Debug\Steem Office.exe
+C:\Dev\Steem Office\Steem Office\obj\x86\Debug\Steem Office.pdb

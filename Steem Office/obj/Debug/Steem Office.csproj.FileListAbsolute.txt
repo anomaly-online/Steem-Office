@@ -1,0 +1,10 @@
+C:\Dev\Steem Office\Steem Office\bin\Debug\Steem Office.exe.config
+C:\Dev\Steem Office\Steem Office\bin\Debug\Steem Office.exe
+C:\Dev\Steem Office\Steem Office\bin\Debug\Steem Office.pdb
+C:\Dev\Steem Office\Steem Office\obj\Debug\Steem Office.csprojAssemblyReference.cache
+C:\Dev\Steem Office\Steem Office\obj\Debug\Steem_Office.frmMain.resources
+C:\Dev\Steem Office\Steem Office\obj\Debug\Steem_Office.Properties.Resources.resources
+C:\Dev\Steem Office\Steem Office\obj\Debug\Steem Office.csproj.GenerateResource.cache
+C:\Dev\Steem Office\Steem Office\obj\Debug\Steem Office.csproj.CoreCompileInputs.cache
+C:\Dev\Steem Office\Steem Office\obj\Debug\Steem Office.exe
+C:\Dev\Steem Office\Steem Office\obj\Debug\Steem Office.pdb

@@ -1,0 +1,379 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Article editor for SteemIt">
+    <meta name="keywords" content="steem,paid,blogging,editor">
+    <meta name="author" content="https://steemit.com/@anomaly">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Steem Writer</title>
+    <style>
+        body {
+            background-color: #f0f0f5;
+            font-family: arial, sans-serif;
+        }
+        .button {
+            border-radius: 5px;
+            background-color: #7070d0;
+            border: 1px solid #303070;
+            color: white;
+            padding: 1px 1px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #5050b0;
+            color: white;
+        }
+        .container {
+            position: absolute;
+            left: 10px;
+            right: 10px;
+            top: 25px;
+            bottom: 10px;
+        }
+        .container .postbody {
+            resize: none;
+            width: 100%;
+            height: 100%;
+            bottom: 10px;
+        }
+        #topBar {
+            position: absolute;
+            top: 1px;
+            height: 23px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css"> <!-- Import SimpleMDE stylesheets -->
+    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script> <!-- Import SimpleMDE javascript -->
+    <script src="https://cdn.steemjs.com/lib/latest/steem.min.js"></script> <!-- Import Steem Library javascript -->
+    <script src="https://code.responsivevoice.org/responsivevoice.js"></script> <!-- Import text to speech library -->
+    <script src="https://cdn.rawgit.com/showdownjs/showdown/1.7.4/dist/showdown.min.js"></script> <!-- Import Markdown library -->
+    <script>
+        var simplemde;
+        var ttspause = false;
+        var wif = "";
+        var parentAuthor = "";
+        var parentPermlink = "";
+        var author = "";
+        var permlink = "";
+        var title = "";
+        var body = "";
+        var jsonMetadata = "";
+        var autospell = true;
+        responsiveVoice.setDefaultVoice("US English Female");
+        function postArticle() {
+            title = document.getElementById("title").value;
+            if (title == "") {
+                title = "Untitled";
+            }
+            var randomness = Math.floor(Math.random() * (1000000000 - 1000 + 1)) + 1000;
+            permlink = title + "-" + randomness.toString();
+            permlink = permlink.replace(/\s+/g, '-');
+            parentPermlink = document.getElementById("catagory").value;
+            var res = parentPermlink.split(" ");
+            res.slice(0, 5);
+            jsonMetadata = "{\"tags\": [\"" + res.join("\", \"") + "\"]}";
+            parentPermlink = res[0];
+            body = simplemde.value();
+            if ((wif != "") && (author != "") && (parentPermlink != "") && (permlink != "") && (title != "") && (body != "")) {
+                steem.broadcast.comment(wif, parentAuthor, parentPermlink, author, permlink, title, body, jsonMetadata, function (err, result) { // This is the line that sends the data to SteemIt
+                    if (result != undefined) {
+                        alert("Success!  Your work has been posted.");
+                    }
+                    else {
+                        alert("Error!  Please double check your login credentials.");
+                    }
+                });
+            } else {
+                alert("Error!  Please make sure all forms are filled in.");
+            }
+            return false;
+        };
+        function hstrip(html) {
+            var tmp = document.createElement("DIV");
+            tmp.innerHTML = html;
+            return tmp.textContent || tmp.innerText || "";
+        };
+        function readAloud() {
+            if ((responsiveVoice.isPlaying()) && (ttspause == false)) {
+                ttspause = true;
+                responsiveVoice.pause();
+            } else if (ttspause == true) {
+                responsiveVoice.resume();
+                ttspause = false;
+            } else {
+                var converter = new showdown.Converter();
+                var texta = simplemde.value();
+                var htmla = converter.makeHtml(texta);
+                var textb = hstrip(htmla);
+                responsiveVoice.speak(textb);
+            }
+            return false;
+        };
+        function stopReadAloud() {
+            if (responsiveVoice.isPlaying()) {
+                ttspause = false;
+                responsiveVoice.cancel();
+            }
+            return false;
+        };
+        function clearText() { // This function clears all form fields
+            if (confirm('Are you sure you want to clear all of the forms?')) {
+                simplemde.value("");
+                document.getElementById("catagory").value = "";
+                document.getElementById("title").value = "";
+            } else {
+                // Do nothing!
+            }
+            return false;
+        };
+        function downloadText() { // Save the users work to a file download
+            var hiddenElement = document.createElement('a');
+            var txtbody = simplemde.value();
+            var txtB = txtbody.split("\r\n");
+            var txtB2 = txtB.join("\n");
+            var txtC = txtB2.split("\n");
+            txtbody = txtC.join("\r\n");
+            title = document.getElementById("title").value;
+            var randomness = Math.floor(Math.random() * (1000000000 - 1000 + 1)) + 1000;
+            var txtfile = title + "-" + randomness.toString();
+            if (txtfile == "") {
+                txtfile = "Untitled";
+            }
+            hiddenElement.href = "data:attachment/text," + encodeURI(txtbody);
+            hiddenElement.target = "_blank";
+            hiddenElement.download = txtfile + ".txt";
+            hiddenElement.click();
+            return false;
+        };
+        function autospellOn() { // Turn on the spellchecking
+            autospell = true;
+            simplemde.toTextArea();
+            simplemde = null;
+            init();
+        };
+        function autospellOff() { // Turn off the spellchecking
+            autospell = false;
+            simplemde.toTextArea();
+            simplemde = null;
+            init();
+        };
+        function init() { // This function is called when the page loads, it sets up the text editor with the preferences below
+            author = window.location.href.split('?')[1];
+            wif = window.location.href.split('?')[2];
+            document.getElementById('file-input').addEventListener('change', readSingleFile, false);
+            var editor = document.getElementById("postbody"); // determine the editor element in the page
+            editor.contentEditable = true; // make sure it can be modified
+            simplemde = new SimpleMDE({ // This is the main function to load the editor into the page, it loads with the preferences defined below
+                autofocus: true, // Start with the cursor ready to type
+                autosave: { // Save the users work automatically in the background
+                    enabled: true,
+                    uniqueId: "markDownEditor123789456zexdcfyvghbi",
+                    delay: 1000,
+                },
+                blockStyles: { // Configure some of the markdown styles
+                    bold: "__",
+                    italic: "_"
+                },
+                element: document.getElementById("postbody"), // Tells it where to place the editor
+                forceSync: true,
+                hideIcons: [], // Decide if there should be any icons hidden from the user interface
+                indentWithTabs: false, // Indent text with tabs or spaces
+                initialValue: "", // The default text written in the text editor
+                insertTexts: { // Set up some markdown templates
+                    horizontalRule: ["", "\n\n-----\n\n"],
+                    image: ["![](http://", ")"],
+                    link: ["[", "](http://)"],
+                    table: ["", "\n\n| Column 1 | Column 2 | Column 3 |\n| -------- | -------- | -------- |\n| Text     | Text      | Text     |\n\n"],
+                },
+                lineWrapping: true, // Have it wrap text to the next line, or have it grow horizontal scroll bar
+                parsingConfig: {
+                    allowAtxHeaderWithoutSpace: true,
+                    strikethrough: true,
+                    underscoresBreakWords: true,
+                },
+                placeholder: "Type here...", // Grey text to prompt for input
+                promptURLs: false, // Use a dialog prompt when the Insert URL Button is pressed
+                renderingConfig: {
+                    singleLineBreaks: true,
+                    codeSyntaxHighlighting: false,
+                },
+                shortcuts: { // Keyboard shortcuts for the user
+                    "toggleOrderedList": "Ctrl-Alt-K",
+                    "toggleCodeBlock": "Ctrl-Alt-C",
+                    "drawTable": "Ctrl-Alt-T",
+                    "toggleBlockquote": "Ctrl-'",
+                    "toggleBold": "Ctrl-B",
+                    "cleanBlock": "Ctrl-E",
+                    "toggleHeadingSmaller": "Ctrl-H",
+                    "toggleItalic": "Ctrl-I",
+                    "drawLink": "Ctrl-K",
+                    "toggleUnorderedList": "Ctrl-L",
+                    "togglePreview": "Ctrl-P",
+                    "toggleCodeBlock": "Ctrl-Alt-C",
+                    "drawImage": "Ctrl-Alt-I",
+                    "toggleOrderedList": "Ctrl-Alt-L",
+                    "toggleHeadingBigger": "Shift-Ctrl-H",
+                    "toggleSideBySide": "F9",
+                    "toggleFullScreen": "F11",
+                },
+                showIcons: ["code", "table"],
+                spellChecker: autospell, // Set the spellcheck to true or false to turn on or off (the autospell variable handles automatic switching of spellcheck settings)
+                status: ["autosave", "lines", "words", "cursor", { // The footer section underneath the editor can display information and statistics
+                    className: "keystrokes",
+                    defaultValue: function (el) {
+                        this.keystrokes = 0;
+                        el.innerHTML = "Keystrokes: 0";
+                    },
+                    onUpdate: function (el) {
+                        el.innerHTML = "Keystrokes: " + this.keystrokes++;
+                    }
+                }],
+                styleSelectedText: true,
+                tabSize: 4, // Size of indentation
+                // The toolbar is the row of buttons above the text editor, this section configures its buttons
+                toolbar: ["bold", "italic", "strikethrough", "|", "heading-smaller", "heading-bigger", "heading-1", "heading-2", "heading-3", "|", "quote", "code", "|", "unordered-list", "ordered-list", "|", "clean-block", "link", "image", "table", "horizontal-rule", "preview", "side-by-side", "fullscreen", "guide", "|", {
+                    name: "spellcheckOnButton",
+                    action: function customFunction(editor) {
+                        autospellOn();
+                    },
+                    className: "fa fa-check",
+                    title: "Spellcheck On",
+                }, {
+                        name: "spellcheckOffButton",
+                        action: function customFunction(editor) {
+                            autospellOff();
+                        },
+                        className: "fa fa-edit",
+                        title: "Spellcheck Off",
+                    }, "|", {
+                        name: "printButton",
+                        action: function customFunction(editor) {
+                            loadPrinter();
+                        },
+                        className: "fa fa-print",
+                        title: "Print your work",
+                    }, {
+                        name: "speakButton",
+                        action: function customFunction(editor) {
+                            document.getElementById('btnPlaySpeech').click();
+                        },
+                        className: "fa fa-commenting-o",
+                        title: "Play/Pause reading your text aloud",
+                    }, {
+                        name: "stopSpeakingButton",
+                        action: function customFunction(editor) {
+                            document.getElementById('btnStopSpeech').click();
+                        },
+                        className: "fa fa-comment",
+                        title: "Stop reading text aloud",
+                    }, "|", {
+                        name: "clearButton",
+                        action: function customFunction(editor) {
+                            clearText();
+                        },
+                        className: "fa fa-trash",
+                        title: "Clear",
+                    }, {
+                        name: "openButton",
+                        action: function customFunction(editor) {
+                            document.getElementById('file-input').click();
+                        },
+                        className: "fa fa-folder-open",
+                        title: "Open text file",
+                    }, {
+                        name: "saveButton",
+                        action: function customFunction(editor) {
+                            downloadText();
+                        },
+                        className: "fa fa-camera-retro",
+                        title: "Save text file",
+                    }, "|", {
+                        name: "publishButton",
+                        action: function customFunction(editor) {
+                            postArticle();
+                        },
+                        className: "fa fa-pencil",
+                        title: "Publish your article",
+                    }
+                ],
+                toolbarTips: true, // Show a little floating information about the editor buttons when the user hovers their mouse on a button
+            });
+            // Setup for the accordian buttons
+            var acc = document.getElementsByClassName("accordion");
+            var i;
+            for (i = 0; i < acc.length; i++) {
+                acc[i].onclick = function () {
+                    this.classList.toggle("active");
+                    var panel = this.nextElementSibling;
+                    if (panel.style.display === "block") {
+                        panel.style.display = "none";
+                    } else {
+                        panel.style.display = "block";
+                    }
+                }
+            }
+        };
+        function loadPrinter() { // Print the users work onto paper
+            var thetxt = simplemde.value();
+            var windowContent = '<!DOCTYPE html>';
+            windowContent += '<html>'
+            windowContent += '<head><title>Print canvas</title></head>';
+            windowContent += '<body>'
+            windowContent += thetxt;
+            windowContent += '</body>';
+            windowContent += '</html>';
+            var printWin = window.open('', '', 'width=340,height=260');
+            printWin.document.open();
+            printWin.document.write(windowContent);
+            printWin.document.close();
+            printWin.focus();
+            printWin.print();
+            printWin.close();
+            return false;
+        };
+        function openFile() { // Open a text file from saved work
+            document.getElementById('openButton').addEventListener('change', readSingleFile, false);
+        };
+        function readSingleFile(e) { // This function is called when the user clicks the Open Button, it prompts the user what to open
+            var file = e.target.files[0];
+            if (!file) {
+                return;
+            }
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                var contents = e.target.result;
+                displayContents(contents);
+            };
+            reader.readAsText(file);
+        };
+        function displayContents(contents) { // This loads the opened file into the text editor
+            simplemde.value(contents);
+        };
+    </script>
+    </head>
+    <body onload="init()">
+        <form id="frmMain" action="" onsubmit="return postArticle();"> <!-- The form where the user types their article -->
+        <input type="file" id="file-input" style="display:none;" /> <!-- Hidden element used for opening saved text files -->
+        <div id="topBar">
+            Title: <input type="text" name="title" id="title" placeholder="Untitled Post">
+            Tags: <input type="text" name="catagory" id="catagory" placeholder="tag1 tag2... (up to 5)">
+            <input type="button" class="button" value="Publish Post" onclick="return postArticle();">
+            <input type="button" class="button" id="btnSaveFile" value="Save File" onclick="return downloadText();" style="display:none;">
+            <input type="button" class="button" id="btnOpenFile" value="Open File" onclick="document.getElementById('file-input').click();" style="display:none;">
+            <input type="button" class="button" value="Spellcheck On" onclick="return autospellOn();" style="display:none;">
+            <input type="button" class="button" value="Spellcheck Off" onclick="return autospellOff();" style="display:none;">
+            <input type="button" class="button" value="Clear Text" onclick="return clearTextArea();" style="display:none;">
+            <input type="button" class="button" id="btnPlaySpeech" value="Play/Pause Speech" onclick="return readAloud();" style="display:none;">
+            <input type="button" class="button" id="btnStopSpeech" value="Stop Speech" onclick="return stopReadAloud();" style="display:none;">
+        </div>
+        <div class="container" id="postcontainer">
+            <textarea name="postbody" class="postbody" id="postbody" form="frmMain"></textarea>  <!-- The text editor itself -->
+        </div>
+        </form>
+    </body>
+</html>
